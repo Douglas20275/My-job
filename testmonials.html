@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials | Charlesabi Enterprises</title>
+    <!-- Tailwind CSS CDN with custom colors (same as homepage) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F2C59', // Deep, authoritative navy blue
+                        accent: '#FF8C42',  // Bright, inviting orange for highlights
+                        backgroundLight: '#FBFBFB', // Very soft, clean white background
+                        textDark: '#333333', // Rich charcoal for body text
+                        sectionAlt: '#E8EBF2', // A cool, light grey-blue for alternating sections
+                        subtleBorder: '#E0E0E0', // For fine lines and borders
+                        cardBg: '#FFFFFF', // Pure white for card backgrounds
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'], // Modern sans-serif for body
+                        playfair: ['Playfair Display', 'serif'], // Elegant serif for headings
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts - Inter for body, Playfair Display for headings -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles and animations for a smooth user experience (copied from homepage) */
+        body {
+            font-family: 'Inter', sans-serif;
+            opacity: 0; /* Initial state for fade-in effect on page load */
+            transition: opacity 1s ease-out; /* Smoother transition for page load */
+            background-color: var(--tw-colors-backgroundLight); /* Global background color from Tailwind config */
+            background-image: url('data:image/svg+xml,%3Csvg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23E0E0E0" fill-opacity="0.05" fill-rule="evenodd"%3E%3Cpath d="M5 0h1L0 6V5zM6 5v1H5z"/%3E%3C/g%3E%3C/svg%3E');
+            background-repeat: repeat;
+            background-attachment: fixed; /* Creates a subtle parallax effect for the pattern */
+        }
+        body.loaded {
+            opacity: 1; /* Final state after page content is loaded */
+        }
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif; /* Elegant font for all headings */
+            font-weight: 700; /* Ensures Playfair Display is bold and impactful */
+        }
+        html {
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        }
+
+        /* Card hover effect for interactive elements - refined for smoother feel */
+        .card-hover {
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother cubic-bezier for transition */
+        }
+        .card-hover:hover {
+            transform: translateY(-12px); /* Slightly more pronounced lift */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12); /* Softer, more diffused shadow on hover */
+        }
+
+        /* Button hover effects - added explicit transitions for background and color */
+        .btn-primary-hover {
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.2s ease-out;
+        }
+        .btn-primary-hover:hover {
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+
+        /* Keyframe for fade-in animation, applied to various elements on load */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-700 { animation-delay: 0.7s; }
+        .delay-800 { animation-delay: 0.8s; }
+
+        /* Header Gradient for a vibrant top bar */
+        .header-gradient {
+            background: linear-gradient(90deg, var(--tw-colors-primary) 0%, var(--tw-colors-accent) 100%);
+        }
+
+        /* Hero Section for Testimonials Page - distinct background and content */
+        .testimonials-hero-section {
+            min-height: 50vh; /* Shorter hero for sub-pages */
+            padding-top: 80px; /* Accounts for fixed header height */
+            background-image: url('https://placehold.co/1920x800/0F2C59/FFFFFF?text=Client+Success+Stories'); /* Specific image for Testimonials page */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .testimonials-hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 44, 89, 0.7); /* Overlay for readability */
+            z-index: 1;
+        }
+        .testimonials-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+        }
+
+        /* Section Backgrounds with Parallax and Overlays for visual depth (copied from homepage) */
+        .bg-section-parallax-1 {
+            background-image: url('https://placehold.co/1920x800/7A9BBF/FFFFFF?text=Happy+Clients');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            z-index: 1;
+        }
+        .bg-section-parallax-1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(251, 251, 251, 0.9); /* backgroundLight overlay */
+            z-index: -1;
+        }
+
+        .bg-call-to-action {
+            background-image: url('https://placehold.co/1920x800/0F2C59/FFFFFF?text=Connect+With+Us+Background');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            z-index: 1;
+        }
+        .bg-call-to-action::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(15, 44, 89, 0.85); /* Primary color overlay */
+            z-index: -1;
+        }
+    </style>
+    <script>
+        // JavaScript for fade-in effect on page load
+        window.addEventListener("load", () => {
+            document.body.classList.add("loaded");
+        });
+    </script>
+</head>
+<body class="bg-backgroundLight text-textDark">
+
+    <!-- Header - Fixed at top with brand colors (same as homepage) -->
+    <header class="header-gradient shadow-lg fixed w-full z-50 text-white">
+        <div class="container mx-auto flex justify-between items-center p-4 md:p-6">
+            <h1 class="text-2xl md:text-3xl font-bold font-playfair">Charlesabi Enterprises</h1>
+            <nav class="hidden md:flex space-x-8 text-base font-medium">
+                <a href="index.html" class="hover:text-accent transition duration-300">Home</a>
+                <a href="about.html" class="hover:text-accent transition duration-300">About</a>
+                <a href="services.html" class="hover:text-accent transition duration-300">Services</a>
+                <a href="price-list.html" class="hover:text-accent transition duration-300">Price List</a>
+                <a href="contact.html" class="hover:text-accent transition duration-300">Contact</a>
+                <a href="contact.html" class="bg-accent text-primary px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-accent transition duration-300 shadow-md btn-primary-hover">Get Quote</a>
+            </nav>
+            <!-- Mobile Menu Button - Hamburger icon for small screens -->
+            <button id="mobile-menu-button" class="md:hidden text-white text-3xl focus:outline-none">
+                &#9776; <!-- Hamburger icon -->
+            </button>
+        </div>
+        <!-- Mobile Menu - Hidden by default, toggles on click -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary text-white py-2">
+            <a href="index.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300">Home</a>
+            <a href="about.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300">About</a>
+            <a href="services.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300">Services</a>
+            <a href="price-list.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300">Price List</a>
+            <a href="contact.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300">Contact</a>
+            <a href="contact.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300">Get Quote</a>
+        </div>
+    </header>
+
+    <!-- Testimonials Page Hero Section -->
+    <section id="top" class="testimonials-hero-section">
+        <div class="testimonials-hero-content">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold mb-6 leading-tight animate-fade-in">
+                What Our Clients Say
+            </h2>
+            <p class="text-lg md:text-xl mb-8 opacity-90 animate-fade-in delay-100">
+                Hear directly from those who have experienced the Charlesabi difference.
+            </p>
+        </div>
+    </section>
+
+    <!-- Testimonials Grid Section -->
+    <section id="testimonials-grid" class="py-16 md:py-24 bg-backgroundLight text-textDark bg-section-parallax-1">
+        <div class="container mx-auto px-4 bg-cardBg p-8 rounded-xl shadow-lg">
+            <h2 class="text-4xl md:text-5xl font-playfair font-bold mb-12 text-center text-primary animate-fade-in">Client Success Stories</h2>
+            <p class="text-lg text-gray-700 leading-relaxed text-center max-w-4xl mx-auto mb-16 animate-fade-in delay-100">
+                We are proud of the positive impact we've had on our clients' businesses and personal lives.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial Card 1 -->
+                <div class="bg-cardBg p-8 rounded-xl shadow-md card-hover border border-subtleBorder animate-fade-in delay-200">
+                    <p class="text-lg italic text-gray-800 mb-6">
+                        "Charlesabi Enterprises has been an invaluable partner for our small business. Their tax advisory services are top-notch, and their cyber cafe services are incredibly convenient. Highly recommend!"
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/60x60/FF8C42/FFFFFF?text=JD" alt="Client Photo" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <p class="font-semibold text-primary">Jane Doe</p>
+                            <p class="text-sm text-gray-600">CEO, Tech Solutions Ltd.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial Card 2 -->
+                <div class="bg-cardBg p-8 rounded-xl shadow-md card-hover border border-subtleBorder animate-fade-in delay-300">
+                    <p class="text-lg italic text-gray-800 mb-6">
+                        "The printing quality at Charlesabi is unmatched, and their team is always so helpful with my document needs. From scanning to binding, they handle everything with professionalism."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/60x60/0F2C59/FFFFFF?text=SM" alt="Client Photo" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <p class="font-semibold text-primary">Samuel Muriithi</p>
+                            <p class="text-sm text-gray-600">Independent Consultant</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial Card 3 -->
+                <div class="bg-cardBg p-8 rounded-xl shadow-md card-hover border border-subtleBorder animate-fade-in delay-400">
+                    <p class="text-lg italic text-gray-800 mb-6">
+                        "Navigating KRA compliance used to be a headache, but Charlesabi Enterprises made it so easy. Their expertise saved me so much time and stress. Truly a lifesaver!"
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/60x60/FF8C42/FFFFFF?text=AK" alt="Client Photo" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <p class="font-semibold text-primary">Ann Kinyanjui</p>
+                            <p class="text-sm text-gray-600">Small Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial Card 4 -->
+                <div class="bg-cardBg p-8 rounded-xl shadow-md card-hover border border-subtleBorder animate-fade-in delay-500">
+                    <p class="text-lg italic text-gray-800 mb-6">
+                        "Their internet browsing speeds are fantastic, and the staff are always friendly and ready to assist with any technical issues. Best cyber cafe experience in Nairobi!"
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/60x60/0F2C59/FFFFFF?text=PM" alt="Client Photo" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <p class="font-semibold text-primary">Peter Mwangi</p>
+                            <p class="text-sm text-gray-600">Student</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial Card 5 -->
+                <div class="bg-cardBg p-8 rounded-xl shadow-md card-hover border border-subtleBorder animate-fade-in delay-600">
+                    <p class="text-lg italic text-gray-800 mb-6">
+                        "I needed urgent passport photos and Charlesabi delivered quickly and professionally. The quality was excellent, and they knew all the requirements. Very reliable service."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/60x60/FF8C42/FFFFFF?text=EW" alt="Client Photo" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <p class="font-semibold text-primary">Esther Wanjiku</p>
+                            <p class="text-sm text-gray-600">Traveler</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial Card 6 -->
+                <div class="bg-cardBg p-8 rounded-xl shadow-md card-hover border border-subtleBorder animate-fade-in delay-700">
+                    <p class="text-lg italic text-gray-800 mb-6">
+                        "The team at Charlesabi helped me with my business registration process. They were thorough, efficient, and made a complex process feel simple. Highly recommended for startups!"
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://placehold.co/60x60/0F2C59/FFFFFF?text=RK" alt="Client Photo" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <p class="font-semibold text-primary">Robert Kimani</p>
+                            <p class="text-sm text-gray-600">Entrepreneur</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section (same as homepage) -->
+    <section class="bg-call-to-action text-white py-16 md:py-20 text-center">
+        <div class="container mx-auto px-4 relative z-10">
+            <h3 class="text-3xl md:text-4xl font-playfair font-bold mb-6">Ready to Experience the Charlesabi Difference?</h3>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                Join our growing list of satisfied clients today!
+            </p>
+            <a href="contact.html" class="inline-block bg-accent text-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-accent transition duration-300 shadow-lg btn-primary-hover">
+                Contact Us Today
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer - Modern column arrangement (same as homepage) -->
+    <footer class="bg-primary text-white py-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <!-- Brand Info Column -->
+            <div>
+                <h4 class="text-2xl font-playfair font-bold mb-4">Charlesabi Enterprises</h4>
+                <p class="text-sm opacity-80 leading-relaxed">
+                    Professional business, IT, and advisory services for individuals and businesses across Kenya. Licensed & Certified.
+                </p>
+            </div>
+
+            <!-- Quick Links Column -->
+            <div>
+                <h4 class="text-xl font-playfair font-bold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="index.html" class="hover:text-accent transition duration-300">Home</a></li>
+                    <li><a href="about.html" class="hover:text-accent transition duration-300">About Us</a></li>
+                    <li><a href="services.html" class="hover:text-accent transition duration-300">Services</a></li>
+                    <li><a href="price-list.html" class="hover:text-accent transition duration-300">Price List</a></li>
+                    <li><a href="contact.html" class="hover:text-accent transition duration-300">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info Column (Simplified for Footer) -->
+            <div>
+                <h4 class="text-xl font-playfair font-bold mb-4">Visit Us</h4>
+                <p class="text-sm opacity-80 leading-relaxed mb-2">
+                    Nairobi, Kenya
+                </p>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-center justify-center md:justify-start">
+                        <svg class="w-5 h-5 mr-2 text-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2h1v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H9V7c0-.55-.45-1-1-1s-1 .45-1 1v2H5c-.55 0-1 .45-1 1s.45 1 1 1h2v3c0 .55.45 1 1 1h3v1c0 .55.45 1 1 1h1.9c.9 0 1.64.58 1.9 1.39.26.81.36 1.7.36 2.61 0 .28-.02.55-.06.82-.1-.02-.2-.04-.3-.06-.82-.16-1.68-.24-2.54-.24-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8c0-.93-.1-1.8-.36-2.61z"/></svg>
+                        Mon - Fri: 8:00 AM - 6:00 PM
+                    </li>
+                    <li class="flex items-center justify-center md:justify-start">
+                        <svg class="w-5 h-5 mr-2 text-accent" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2h1v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H9V7c0-.55-.45-1-1-1s-1 .45-1 1v2H5c-.55 0-1 .45-1 1s.45 1 1 1h2v3c0 .55.45 1 1 1h3v1c0 .55.45 1 1 1h1.9c.9 0 1.64.58 1.9 1.39.26.81.36 1.7.36 2.61 0 .28-.02.55-.06.82-.1-.02-.2-.04-.3-.06-.82-.16-1.68-.24-2.54-.24-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8c0-.93-.1-1.8-.36-2.61z"/></svg>
+                        Sat: 9:00 AM - 4:00 PM
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 border-t border-subtleBorder border-opacity-20 pt-6 mt-8 text-center">
+            <p class="text-sm opacity-70">&copy; 2025 Charlesabi Enterprises. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll-to-top Button - Accessible and visible -->
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-6 bg-accent text-white p-3 rounded-full shadow-lg hover:bg-primary transition duration-300 z-50 text-xl font-bold">
+        ↑
+    </button>
+
+    <script>
+        // Mobile menu toggle functionality
+        document.getElementById("mobile-menu-button").addEventListener("click", () => {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+    </script>
+
+</body>
+</html>

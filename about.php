@@ -260,22 +260,25 @@
         <div class="container mx-auto flex justify-between items-center p-4 md:p-6">
             <h1 class="text-2xl md:text-3xl font-bold font-playfair">Charlesabi Enterprises</h1>
             <nav class="hidden md:flex space-x-8 text-base font-medium">
-                <a href="index.php" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Home</a>
-                <a href="about.php" class="block px-4 py-2 bg-accent text-primary rounded-md">About</a> <a href="services.php" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Services</a>
-                <a href="products.php" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Price List</a>
-                <a href="contact.php" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Contact</a>
-                <a href="contact.php" class="block px-4 py-2 hover:bg-white hover:text-accent transition duration-300 rounded-full border border-white">Get Quote</a>
+           
+                <a href="index.html" class="block px-4 py-2 bg-accent text-primary rounded-md">Home</a> <!-- Active link for this page -->
+   
+                <a href="services.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Services</a>
+                <a href="products.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Price List</a>
+                <a href="contact.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Contact</a>
+                <a href="contact.html" class="block px-4 py-2 hover:bg-white hover:text-accent transition duration-300 rounded-full border border-white">Get Quote</a>
             </nav>
             <button id="mobile-menu-button" class="md:hidden text-white text-3xl focus:outline-none">
                 &#9776; </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-primary text-white py-2">
-            <a href="index.php" class="block hover:bg-accent hover:text-primary transition duration-300">Home</a>
-            <a href="about.php" class="block active-link">About</a> <a href="services.php" class="block hover:bg-accent hover:text-primary transition duration-300">Services</a>
-            <a href="products.php" class="block hover:bg-accent hover:text-primary transition duration-300">Price List</a>
-            <a href="contact.php" class="block hover:bg-accent hover:text-primary transition duration-300">Contact</a>
-            <a href="contact.php" class="block get-quote-mobile hover:text-white transition duration-300">Get Quote</a>
-        </div>
+         <nav class="hidden md:flex space-x-8 text-base font-medium">
+                <a href="index.html" class="block px-4 py-2 bg-accent text-primary rounded-md">Home</a> <!-- Active link for this page -->
+       
+                <a href="services.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Services</a>
+                <a href="products.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Price List</a>
+                <a href="contact.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Contact</a>
+                <a href="contact.html" class="block px-4 py-2 hover:bg-white hover:text-accent transition duration-300 rounded-full border border-white">Get Quote</a>
+            </nav>
     </header>
 
     <section id="top" class="about-hero-section">

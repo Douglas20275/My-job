@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price List | Charlesabi Enterprises</title>
+    <!-- Tailwind CSS CDN with custom colors -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F2C59', // Deep, authoritative navy blue
+                        accent: '#FF8C42',  // Bright, inviting orange for highlights
+                        backgroundLight: '#FBFBFB', // Very soft, clean white background
+                        textDark: '#333333', // Rich charcoal for body text
+                        sectionAlt: '#E8EBF2', // A cool, light grey-blue for alternating sections
+                        subtleBorder: '#E0E0E0', // For fine lines and borders
+                        cardBg: '#FFFFFF', // Pure white for card backgrounds
+                    },
+                    fontFamily: {
+                        // Updated fonts to Roboto and Montserrat for consistency
+                        inter: ['Roboto', 'sans-serif'], // Roboto for body
+                        playfair: ['Montserrat', 'sans-serif'], // Montserrat for headings
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts - Roboto for body, Montserrat for headings -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN for modern, scalable SVG icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Base styles and animations for a smooth user experience */
+        body {
+            font-family: 'Roboto', sans-serif; /* Changed to Roboto */
+            opacity: 0; /* Initial state for fade-in effect on page load */
+            transition: opacity 1s ease-out; /* Smoother transition for page load */
+            background-color: var(--tw-colors-backgroundLight); /* Global background color from Tailwind config */
+            /* Removed background-image from body to use only hero image for sections */
+            background-repeat: repeat; /* Kept for consistency if a pattern is desired elsewhere */
+            background-attachment: fixed; /* Creates a subtle parallax effect for the pattern */
+        }
+        body.loaded {
+            opacity: 1; /* Final state after page content is loaded */
+        }
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif; /* Changed to Montserrat */
+            font-weight: 700; /* Ensures Montserrat is bold and impactful */
+        }
+        html {
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        }
+
+        /* Card hover effect for interactive elements - refined for smoother feel */
+        .card-hover {
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother cubic-bezier for transition */
+        }
+        .card-hover:hover {
+            transform: translateY(-12px); /* Slightly more pronounced lift */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12); /* Softer, more diffused shadow on hover */
+        }
+
+        /* Button hover effects - added explicit transitions for background and color */
+        .btn-primary-hover {
+            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.2s ease-out;
+        }
+        .btn-primary-hover:hover {
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+
+        /* Keyframe for fade-in animation, applied to various elements on load */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        
+        /* Animation for elements appearing on scroll */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header Gradient for a vibrant top bar */
+        .header-gradient {
+            background: linear-gradient(90deg, var(--tw-colors-primary) 0%, var(--tw-colors-accent) 100%);
+            transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Added transition for scroll effect */
+        }
+
+        /* Header Scroll Effect - Consistent with homepage */
+        header.scrolled {
+            background: var(--tw-colors-primary); /* Solid primary color when scrolled */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Hero Section for Products/Price List Page - now consistent with homepage hero */
+        .price-list-hero-section {
+            min-height: 50vh; /* Shorter hero for sub-pages */
+            padding-top: 80px; /* Accounts for fixed header height */
+            background-image: url('IMAGES/Kenya.jfif'); /* Consistent hero image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        .price-list-hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 44, 89, 0.05); /* Very subtle dark overlay for text readability */
+            z-index: 1;
+        }
+        .price-list-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); /* Subtle text shadow for readability */
+        }
+
+        /* Section Backgrounds with Parallax and Overlays for visual depth - Now all use Kenya.jfif */
+        .bg-section-parallax-1 {
+            background-image: url('IMAGES/Kenya.jfif'); /* All parallax sections now use the hero image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            z-index: 1;
+        }
+        .bg-section-parallax-1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0); /* Fully transparent overlays for background images */
+            z-index: -1;
+        }
+
+        .bg-call-to-action {
+            background-image: url('IMAGES/CALL.png'); /* Consistent image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            z-index: 1;
+        }
+        .bg-call-to-action::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(15, 44, 89, 0.2); /* Reduced opacity for better image visibility */
+            z-index: -1;
+        }
+
+        /* Table styling refinements */
+        .product-table th {
+            background-color: var(--tw-colors-primary); /* Use primary color for header */
+            color: #ffffff;
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        .product-table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--tw-colors-subtleBorder); /* Use subtleBorder color */
+        }
+        .product-table tbody tr:nth-child(odd) {
+            background-color: var(--tw-colors-sectionAlt); /* Use sectionAlt for stripe */
+        }
+        .product-table tbody tr:hover {
+            background-color: rgba(var(--tw-colors-accent-rgb), 0.1); /* Subtle hover effect using accent color */
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        /* Mobile Menu Specific Styles */
+        #mobile-menu {
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        #mobile-menu.open {
+            max-height: 300px; /* Adjust based on content height */
+            opacity: 1;
+        }
+        #mobile-menu a {
+            padding: 0.75rem 1rem; /* More generous padding for touch targets */
+            margin: 0.5rem 1rem; /* Increased vertical spacing between links */
+            border-radius: 0.5rem; /* Rounded corners for links */
+            text-align: center;
+            display: block;
+        }
+        #mobile-menu .active-link {
+            background-color: var(--tw-colors-accent);
+            color: var(--tw-colors-primary);
+        }
+        #mobile-menu .get-quote-mobile {
+            background-color: var(--tw-colors-white);
+            color: var(--tw-colors-accent);
+            border: 1px solid var(--tw-colors-accent);
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+        #mobile-menu .get-quote-mobile:hover {
+            background-color: var(--tw-colors-accent);
+            color: var(--tw-colors-white);
+        }
+    </style>
+    <script>
+        // JavaScript for fade-in effect on page load
+        window.addEventListener("load", () => {
+            document.body.classList.add("loaded");
+            // Initialize Lucide icons after the page is loaded
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            // Intersection Observer for on-scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    } else {
+                        // Optional: remove 'is-visible' if you want elements to animate again on scroll up
+                        // entry.target.classList.remove('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1, // Trigger when 10% of the element is visible
+                rootMargin: '0px 0px -50px 0px' // Adjust when the animation triggers (e.g., 50px before it's fully in view)
+            });
+
+            document.querySelectorAll('.fade-in-on-scroll').forEach(element => {
+                observer.observe(element);
+            });
+
+            // Mobile menu toggle functionality
+            const mobileMenuButton = document.getElementById("mobile-menu-button");
+            const mobileMenu = document.getElementById("mobile-menu");
+
+            mobileMenuButton.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+                mobileMenu.classList.toggle("open"); // Toggle 'open' class for animation
+            });
+
+            // Header scroll effect: change background and shadow on scroll
+            window.addEventListener("scroll", () => {
+                const header = document.querySelector("header");
+                if (window.scrollY > 50) { // After scrolling 50px
+                    header.classList.add("scrolled");
+                } else {
+                    header.classList.remove("scrolled");
+                }
+            });
+        });
+    </script>
+</head>
+<body class="bg-backgroundLight text-textDark">
+
+    <!-- Header - Fixed at top with brand colors -->
+    <header class="header-gradient shadow-lg fixed w-full z-50 text-white">
+        <div class="container mx-auto flex justify-between items-center p-4 md:p-6">
+            <h1 class="text-2xl md:text-3xl font-bold font-playfair">Charlesabi Enterprises</h1>
+            <nav class="hidden md:flex space-x-8 text-base font-medium">
+                <a href="index.php" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Home</a>
+                <a href="about.php" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">About</a>
+                <a href="services.php" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Services</a>
+                <a href="products.php" class="block px-4 py-2 bg-accent text-primary rounded-md">Price List</a> <!-- Active link for this page -->
+                <a href="contact.php" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Contact</a>
+                <a href="contact.php" class="block px-4 py-2 hover:bg-white hover:text-accent transition duration-300 rounded-full border border-white">Get Quote</a>
+            </nav>
+            <!-- Mobile Menu Button - Hamburger icon for small screens -->
+            <button id="mobile-menu-button" class="md:hidden text-white text-3xl focus:outline-none">
+                &#9776; <!-- Hamburger icon -->
+            </button>
+        </div>
+        <!-- Mobile Menu - Hidden by default, toggles on click -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary text-white py-2">
+            <a href="index.php" class="block hover:bg-accent hover:text-primary transition duration-300">Home</a>
+            <a href="about.php" class="block hover:bg-accent hover:text-primary transition duration-300">About</a>
+            <a href="services.php" class="block hover:bg-accent hover:text-primary transition duration-300">Services</a>
+            <a href="products.php" class="block active-link">Price List</a> <!-- Active link for this page -->
+            <a href="contact.php" class="block hover:bg-accent hover:text-primary transition duration-300">Contact</a>
+            <a href="contact.php" class="block get-quote-mobile hover:text-white transition duration-300">Get Quote</a>
+        </div>
+    </header>
+
+    <!-- Hero Section for Products Page -->
+    <section id="top" class="price-list-hero-section">
+        <div class="price-list-hero-content animate-fade-in">
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold mb-6 leading-tight">
+                Our Products & Pricing
+            </h2>
+            <p class="text-lg md:text-xl opacity-90">
+                High-Quality Printing & Stationery at Competitive Rates.
+            </p>
+        </div>
+    </section>
+
+    <!-- Product List Section -->
+    <section class="py-16 md:py-24 text-textDark bg-section-parallax-1">
+        <div class="w-full px-4 md:px-8 lg:px-16 py-8 bg-cardBg rounded-xl shadow-lg fade-in-on-scroll">
+            <h3 class="text-3xl md:text-4xl font-playfair font-bold text-primary text-center mb-10">Printing & Stationery Products</h3>
+            <p class="text-center text-lg text-gray-700 mb-10 max-w-3xl mx-auto">
+                Below are some of our most popular items and their estimated prices (KES). For customized orders or bulk pricing, please contact us directly.
+            </p>
+
+            <div class="overflow-x-auto bg-cardBg shadow-xl rounded-lg border border-subtleBorder fade-in-on-scroll">
+                <table class="min-w-full text-base product-table">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Description</th>
+                            <th>Price (KES)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Receipt Book</td>
+                            <td>Custom carbon copy receipt books (A5/A6)</td>
+                            <td>150 – 500</td>
+                        </tr>
+                        <tr>
+                            <td>Photocopying (Per Page)</td>
+                            <td>Black and white laser copy</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>Binding</td>
+                            <td>Thermal or spiral binding for documents</td>
+                            <td>50 – 150</td>
+                        </tr>
+                        <tr>
+                            <td>Lamination</td>
+                            <td>A4 & A3 document lamination for durability</td>
+                            <td>30 – 100</td>
+                        </tr>
+                        <tr>
+                            <td>Custom Stamps</td>
+                            <td>Personalized rubber & self-inking stamps</td>
+                            <td>500 – 1,500</td>
+                        </tr>
+                        <tr>
+                            <td>Permanent Markers</td>
+                            <td>High-quality black or colored ink options</td>
+                            <td>80 – 120</td>
+                        </tr>
+                        <tr>
+                            <td>File Binders</td>
+                            <td>Durable lever arch or ring binders</td>
+                            <td>150 – 300</td>
+                        </tr>
+                        <tr>
+                            <td>Sticky Notes</td>
+                            <td>Convenient pack of assorted sizes/colors</td>
+                            <td>50 – 100</td>
+                        </tr>
+                        <tr>
+                            <td>Calculators</td>
+                            <td>Reliable scientific or office calculators</td>
+                            <td>300 – 1,200</td>
+                        </tr>
+                        <tr>
+                            <td>Office Pens (Box)</td>
+                            <td>Box of 50 blue/black ballpoint pens</td>
+                            <td>300 – 500</td>
+                        </tr>
+                        <tr>
+                            <td>Whiteboard (Small)</td>
+                            <td>Magnetic whiteboard (60x90 cm)</td>
+                            <td>1,500 – 2,500</td>
+                        </tr>
+                        <tr>
+                            <td>Paper Ream (A4)</td>
+                            <td>500 sheets of A4 multi-purpose paper</td>
+                            <td>450 – 600</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-12 text-lg fade-in-on-scroll">
+                <p class="text-gray-700">Note: Prices are estimates and may vary based on quantity, customization, and current market rates. For large orders or specific requirements, please <a href="contact.php" class="text-primary font-semibold hover:text-accent transition duration-300">get in touch with us</a> for a precise quote.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="bg-call-to-action text-white py-16 md:py-20 text-center">
+        <div class="container mx-auto px-4 relative z-10 fade-in-on-scroll">
+            <h3 class="text-3xl md:text-4xl font-playfair font-bold mb-6">Have a Custom Order or Bulk Inquiry?</h3>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                Our team is ready to assist you with personalized solutions and competitive pricing.
+            </p>
+            <a href="contact.php" class="inline-block bg-accent text-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-accent transition duration-300 shadow-lg btn-primary-hover">
+                Request a Custom Quote
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer - Modern column arrangement -->
+    <footer class="bg-primary text-white py-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <!-- Brand Info Column -->
+            <div>
+                <h4 class="text-2xl font-playfair font-bold mb-4">Charlesabi Enterprises</h4>
+                <p class="text-sm opacity-80 leading-relaxed">
+                    Professional business, IT, and advisory services for individuals and businesses across Kenya. Licensed & Certified.
+                </p>
+            </div>
+
+            <!-- Quick Links Column -->
+            <div>
+                <h4 class="text-xl font-playfair font-bold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="index.php" class="hover:text-accent transition duration-300">Home</a></li>
+                    <li><a href="about.php" class="hover:text-accent transition duration-300">About Us</a></li>
+                    <li><a href="services.php" class="hover:text-accent transition duration-300">Services</a></li>
+                    <li><a href="products.php" class="hover:text-accent transition duration-300">Price List</a></li>
+                    <li><a href="contact.php" class="hover:text-accent transition duration-300">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info Column (Simplified for Footer) -->
+            <div>
+                <h4 class="text-xl font-playfair font-bold mb-4">Visit Us</h4>
+                <p class="text-sm opacity-80 leading-relaxed mb-2">
+                    Nairobi, Kenya
+                </p>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-center justify-center md:justify-start">
+                        <i data-lucide="calendar" class="w-5 h-5 mr-2 text-accent"></i>
+                        Mon - Fri: 8:00 AM - 6:00 PM
+                    </li>
+                    <li class="flex items-center justify-center md:justify-start">
+                        <i data-lucide="calendar" class="w-5 h-5 mr-2 text-accent"></i>
+                        Sat: 9:00 AM - 4:00 PM
+                    </li>
+                    <li class="flex items-center justify-center md:justify-start">
+                        <i data-lucide="phone" class="w-5 h-5 mr-2 text-accent"></i>
+                        <a href="tel:+2547XXXXXXXX" class="hover:text-accent transition duration-300">+254 7XX XXX XXXX</a>
+                    </li>
+                    <li class="flex items-center justify-center md:justify-start">
+                        <i data-lucide="mail" class="w-5 h-5 mr-2 text-accent"></i>
+                        <a href="mailto:info@charlesabienterprises.com" class="hover:text-accent transition duration-300">info@charlesabienterprises.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 border-t border-subtleBorder border-opacity-20 pt-6 mt-8 text-center">
+            <p class="text-sm opacity-70">&copy; 2025 Charlesabi Enterprises. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll-to-top Button - Accessible and visible -->
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-6 bg-accent text-white p-3 rounded-full shadow-lg hover:bg-primary transition duration-300 z-50 text-xl font-bold">
+        ↑
+    </button>
+
+</body>
+</html>

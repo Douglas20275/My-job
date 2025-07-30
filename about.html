@@ -19,32 +19,39 @@
                         cardBg: '#FFFFFF', // Pure white for card backgrounds
                     },
                     fontFamily: {
-                        inter: ['Inter', 'sans-serif'], // Modern sans-serif for body
-                        playfair: ['Playfair Display', 'serif'], // Elegant serif for headings
+                        // Updated fonts to Roboto and Montserrat for consistency
+                        inter: ['Roboto', 'sans-serif'], // Roboto for body
+                        playfair: ['Montserrat', 'sans-serif'], // Montserrat for headings
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts - Roboto for body, Montserrat for headings -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         /* Base styles and animations for a smooth user experience */
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Roboto', sans-serif; /* Changed to Roboto */
             opacity: 0; /* Initial state for fade-in effect on page load */
             transition: opacity 1s ease-out; /* Smoother transition for page load */
             background-color: var(--tw-colors-backgroundLight); /* Global background color from Tailwind config */
-            background-image: url('data:image/svg+xml,%3Csvg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23E0E0E0" fill-opacity="0.05" fill-rule="evenodd"%3E%3Cpath d="M5 0h1L0 6V5zM6 5v1H5z"/%3E%3C/g%3E%3C/svg%3E'); /* Keeping SVG pattern for modernity */
-            background-repeat: repeat;
+            background-repeat: repeat; /* Kept for consistency if a pattern is desired elsewhere */
             background-attachment: fixed; /* Creates a subtle parallax effect for the pattern */
+            background-image: url('IMAGES/Kenya.jfif'); /* Moved background image to body for continuous effect */
+            background-size: cover;
+            background-position: center;
+            /* Added font smoothing for a crisper, smoother text rendering */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         body.loaded {
             opacity: 1; /* Final state after page content is loaded */
         }
         h1, h2, h3, h4, h5 {
-            font-family: 'Playfair Display', serif; /* Elegant font for all headings */
-            font-weight: 700; /* Ensures Playfair Display is bold and impactful */
+            font-family: 'Montserrat', sans-serif; /* Changed to Montserrat */
+            font-weight: 700; /* Ensures Montserrat is bold and impactful */
         }
         html {
             scroll-behavior: smooth; /* Smooth scrolling for anchor links */
@@ -55,8 +62,8 @@
             transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother cubic-bezier for transition */
         }
         .card-hover:hover {
-            transform: translateY(-12px); /* Slightly more pronounced lift */
-            box-shadow: 0 15px 30px rgba(0,0,0,0.12); /* Softer, more diffused shadow on hover */
+            transform: translateY(-8px); /* Slightly less pronounced lift for subtlety */
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Softer, more diffused shadow on hover */
         }
 
         /* Button hover effects - added explicit transitions for background and color */
@@ -88,16 +95,21 @@
         /* Header Gradient for a vibrant top bar */
         .header-gradient {
             background: linear-gradient(90deg, var(--tw-colors-primary) 0%, var(--tw-colors-accent) 100%);
+            transition: background 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Added transition for scroll effect */
         }
 
-        /* Hero Section for About Page - distinct background and content */
+        /* Header Scroll Effect - Consistent with homepage */
+        header.scrolled {
+            background: var(--tw-colors-primary); /* Solid primary color when scrolled */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Hero Section for About Page */
         .about-hero-section {
             min-height: 50vh; /* Shorter hero for sub-pages */
             padding-top: 80px; /* Accounts for fixed header height */
-           background-image: url('IMAGES/Kenya.jfif'); /* Consistent hero image */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background-image: none; /* Removed background image from here, now on body */
+            background-color: transparent; /* Ensure transparency to show body background */
             position: relative;
             display: flex;
             align-items: center;
@@ -113,7 +125,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(15, 44, 89, 0.7); /* Overlay for readability */
+            background: rgba(15, 44, 89, 0.3); /* Overlay for readability */
             z-index: 1;
         }
         .about-hero-content {
@@ -124,24 +136,7 @@
         }
 
         /* Section Backgrounds with Parallax and Overlays for visual depth */
-        .bg-section-parallax-1 {
-            background-image: url('IMAGES/Four.jfif'); /* Local image for Teamwork Collaboration */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            position: relative;
-            z-index: 1;
-        }
-        .bg-section-parallax-1::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(251, 251, 251, 0.9); /* backgroundLight overlay */
-            z-index: -1;
-        }
+        /* Removed .bg-section-parallax-1 as its image is no longer needed here */
 
         .bg-section-parallax-2 {
             background-image: url('IMAGES/Charles.jfif'); /* Local image for Creative Printing Process */
@@ -251,6 +246,16 @@
                 mobileMenu.classList.toggle("hidden");
                 mobileMenu.classList.toggle("open"); // Toggle 'open' class for animation
             });
+
+            // Header scroll effect: change background and shadow on scroll
+            window.addEventListener("scroll", () => {
+                const header = document.querySelector("header");
+                if (window.scrollY > 50) { // After scrolling 50px
+                    header.classList.add("scrolled");
+                } else {
+                    header.classList.remove("scrolled");
+                }
+            });
         });
     </script>
 </head>
@@ -261,25 +266,25 @@
             <h1 class="text-2xl md:text-3xl font-bold font-playfair">Charlesabi Enterprises</h1>
             <nav class="hidden md:flex space-x-8 text-base font-medium">
                 <a href="index.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Home</a>
-               
+                <a href="about.html" class="block px-4 py-2 bg-accent text-primary rounded-md">About Us</a> <!-- Active link for this page -->
                 <a href="services.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Services</a>
                 <a href="products.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Products</a>
                 <a href="contact.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Contact Us</a>
-               
+            </nav>
             <button id="mobile-menu-button" class="md:hidden text-white text-3xl focus:outline-none">
-                &#9776; </button>
+                &#9776;
+            </button>
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-primary text-white py-2">
-            <a href="index.html" class="block hover:bg-accent hover:text-primary transition duration-300">Home</a>
-           
-            <a href="services.html" class="block hover:bg-accent hover:text-primary transition duration-300">Services</a>
-            <a href="products.html" class="block hover:bg-accent hover:text-primary transition duration-300">Price List</a>
-            <a href="contact.html" class="block hover:bg-accent hover:text-primary transition duration-300">Contact</a>
-           
+            <a href="index.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Home</a>
+            <a href="about.html" class="block px-4 py-2 bg-accent text-primary rounded-md">About Us</a> <!-- Active link for this page -->
+            <a href="services.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Services</a>
+            <a href="products.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Price List</a>
+            <a href="contact.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Contact Us</a>
         </div>
     </header>
 
-    <section id="top" class="about-hero-section">
+    <section id="top" class="about-hero-section pb-0">
         <div class="about-hero-content animate-fade-in">
             <h2 class="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold mb-6 leading-tight">
                 Our Story: Innovation, Integrity, Impact.
@@ -290,7 +295,7 @@
         </div>
     </section>
 
-    <section id="our-story" class="py-16 md:py-24 bg-backgroundLight text-textDark">
+    <section id="our-story" class="pt-0 md:pt-0 pb-16 md:pb-24 bg-transparent text-textDark">
         <div class="container mx-auto px-4 bg-cardBg p-8 rounded-xl shadow-lg fade-in-on-scroll">
             <h2 class="text-4xl md:text-5xl font-playfair font-bold mb-12 text-center text-primary">Our Journey of Growth and Dedication</h2>
             <div class="max-w-4xl mx-auto text-lg text-gray-700 leading-relaxed space-y-6">
@@ -400,6 +405,7 @@
 
     <footer class="bg-primary text-white py-12">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <!-- Brand Info Column -->
             <div>
                 <h4 class="text-2xl font-playfair font-bold mb-4">Charlesabi Enterprises</h4>
                 <p class="text-sm opacity-80 leading-relaxed">
@@ -407,17 +413,19 @@
                 </p>
             </div>
 
+            <!-- Quick Links Column -->
             <div>
                 <h4 class="text-xl font-playfair font-bold mb-4">Quick Links</h4>
                 <ul class="space-y-2 text-sm">
                     <li><a href="index.html" class="hover:text-accent transition duration-300">Home</a></li>
-            
+                    <li><a href="about.html" class="hover:text-accent transition duration-300">About Us</a></li>
                     <li><a href="services.html" class="hover:text-accent transition duration-300">Services</a></li>
                     <li><a href="products.html" class="hover:text-accent transition duration-300">Products</a></li>
                     <li><a href="contact.html" class="hover:text-accent transition duration-300">Contact Us</a></li>
                 </ul>
             </div>
 
+            <!-- Contact Info Column (Simplified for Footer) -->
             <div>
                 <h4 class="text-xl font-playfair font-bold mb-4">Visit Us</h4>
                 <p class="text-sm opacity-80 leading-relaxed mb-2">

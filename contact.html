@@ -105,7 +105,7 @@
         .contact-hero-section {
             min-height: 50vh; /* Shorter hero for sub-pages */
             padding-top: 80px; /* Accounts for fixed header height */
-          
+            background-image: url('IMAGES/Kenya.jfif'); /* Set background image as requested */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -207,6 +207,7 @@
             color: var(--tw-colors-white);
         }
     </style>
+    
     <script>
         // JavaScript for fade-in effect on page load
         window.addEventListener("load", () => {
@@ -267,7 +268,6 @@
                 <a href="about.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">About</a>
                 <a href="services.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Services</a>
                 <a href="products.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Price List</a>
-            
             </nav>
             <!-- Mobile Menu Button - Hamburger icon for small screens -->
             <button id="mobile-menu-button" class="md:hidden text-white text-3xl focus:outline-none">
@@ -276,13 +276,11 @@
         </div>
         <!-- Mobile Menu - Hidden by default, toggles on click -->
         <div id="mobile-menu" class="hidden md:hidden bg-primary text-white py-2">
-         
+            
                 <a href="index.html" class="block px-4 py-2 bg-accent text-primary rounded-md">Home</a> <!-- Active link for this page -->
                 <a href="about.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">About</a>
                 <a href="services.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Services</a>
                 <a href="products.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Price List</a>
-               
-       
         </div>
     </header>
 
@@ -448,7 +446,6 @@
             <p class="text-sm opacity-70">&copy; 2025 Charlesabi Enterprises. All Rights Reserved.</p>
         </div>
     </footer>
-
     <!-- Scroll-to-top Button - Accessible and visible -->
     <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-6 bg-accent text-white p-3 rounded-full shadow-lg hover:bg-primary transition duration-300 z-50 text-xl font-bold">
         ↑

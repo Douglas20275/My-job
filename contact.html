@@ -11,12 +11,12 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0F2C59', // Deep, authoritative navy blue
-                        accent: '#FF8C42',  // Bright, inviting orange for highlights
-                        backgroundLight: '#FBFBFB', // Very soft, clean white background
-                        textDark: '#333333', // Rich charcoal for body text
-                        sectionAlt: '#E8EBF2', // A cool, light grey-blue for alternating sections
-                        subtleBorder: '#E0E0E0', // For fine lines and borders
+                        primary: '#2C3E50', // Dark Slate Blue - Professional, calming
+                        accent: '#1ABC9C',  // Turquoise - Vibrant, inviting
+                        backgroundLight: '#F8F9FA', // Very light grey - Clean background
+                        textDark: '#34495E', // Deep grey - Readable body text
+                        sectionAlt: '#ECF0F1', // Lighter grey - Alternating sections
+                        subtleBorder: '#D5DBDB', // Soft grey - Fine lines and borders
                         cardBg: '#FFFFFF', // Pure white for card backgrounds
                     },
                     fontFamily: {
@@ -39,7 +39,6 @@
             opacity: 0; /* Initial state for fade-in effect on page load */
             transition: opacity 1s ease-out; /* Smoother transition for page load */
             background-color: var(--tw-colors-backgroundLight); /* Global background color from Tailwind config */
-            /* Removed background-image from body to use only hero image for sections */
             background-repeat: repeat; /* Kept for consistency if a pattern is desired elsewhere */
             background-attachment: fixed; /* Creates a subtle parallax effect for the pattern */
         }
@@ -264,10 +263,11 @@
         <div class="container mx-auto flex justify-between items-center p-4 md:p-6">
             <h1 class="text-2xl md:text-3xl font-bold font-playfair">Charlesabi Enterprises</h1>
            <nav class="hidden md:flex space-x-8 text-base font-medium">
-                <a href="index.html" class="block px-4 py-2 bg-accent text-primary rounded-md">Home</a> <!-- Active link for this page -->
+                <a href="index.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Home</a>
                 <a href="about.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">About</a>
                 <a href="services.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Services</a>
                 <a href="products.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Price List</a>
+                <a href="contact.html" class="block px-4 py-2 bg-accent text-primary rounded-md">Contact Us</a> <!-- Active link for this page -->
             </nav>
             <!-- Mobile Menu Button - Hamburger icon for small screens -->
             <button id="mobile-menu-button" class="md:hidden text-white text-3xl focus:outline-none">
@@ -276,11 +276,11 @@
         </div>
         <!-- Mobile Menu - Hidden by default, toggles on click -->
         <div id="mobile-menu" class="hidden md:hidden bg-primary text-white py-2">
-            
-                <a href="index.html" class="block px-4 py-2 bg-accent text-primary rounded-md">Home</a> <!-- Active link for this page -->
+                <a href="index.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Home</a>
                 <a href="about.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">About</a>
                 <a href="services.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Services</a>
                 <a href="products.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Price List</a>
+                <a href="contact.html" class="block px-4 py-2 bg-accent text-primary rounded-md">Contact Us</a> <!-- Active link for this page -->
         </div>
     </header>
 
@@ -297,11 +297,11 @@
     </section>
 
     <!-- Contact Information & Form Section -->
-    <section id="contact-details" class="py-16 md:py-24 text-textDark bg-section-parallax-1">
-        <div class="w-full px-4 md:px-8 lg:px-16 py-8 bg-cardBg rounded-xl shadow-lg fade-in-on-scroll">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+    <section id="contact-details" class="py-16 md:py-24 text-textDark bg-backgroundLight">
+        <div class="container mx-auto px-4 md:px-8 lg:px-16 py-8 bg-cardBg rounded-xl shadow-lg fade-in-on-scroll">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
                 <!-- Contact Information Column -->
-                <div class="animate-fade-in">
+                <div class="animate-fade-in order-2 md:order-1">
                     <h3 class="text-3xl md:text-4xl font-playfair font-bold mb-8 text-primary text-center md:text-left">Reach Out to Us</h3>
                     <p class="text-lg text-gray-700 leading-relaxed mb-6">
                         Whether you have a question about our services, need a quote, or just want to say hello, we're ready to assist.
@@ -314,7 +314,7 @@
                         <li class="flex items-center justify-center md:justify-start">
                             <i data-lucide="mail" class="w-7 h-7 mr-3 text-accent"></i>
                             <strong class="text-primary">Email:</strong>
-                            <a href="mailto:charlessaabi@gmail.com" class="text-textDark hover:text-accent transition duration-300 ml-1">charlessaa@gmail.com</a>
+                            <a href="mailto:charlessaabi@gmail.com" class="text-textDark hover:text-accent transition duration-300 ml-1">charlessaabi@gmail.com</a>
                         </li>
                         <li class="flex items-center justify-center md:justify-start">
                             <i data-lucide="clock" class="w-7 h-7 mr-3 text-accent"></i>
@@ -328,7 +328,7 @@
                 </div>
 
                 <!-- Contact Form Column -->
-                <div class="animate-fade-in delay-100">
+                <div class="animate-fade-in delay-100 order-1 md:order-2">
                     <h3 class="text-3xl md:text-4xl font-playfair font-bold mb-8 text-primary text-center md:text-left">Send Us a Message</h3>
                     <form action="#" method="POST" class="space-y-6">
                         <div>
@@ -360,7 +360,7 @@
 
     <!-- Google Map Section -->
     <section id="map-location" class="py-16 md:py-24 text-white bg-section-parallax-1">
-        <div class="w-full px-4 md:px-8 lg:px-16 py-8 bg-cardBg rounded-xl shadow-lg text-center fade-in-on-scroll">
+        <div class="container mx-auto px-4 md:px-8 lg:px-16 py-8 bg-cardBg rounded-xl shadow-lg text-center fade-in-on-scroll">
             <h2 class="text-4xl md:text-5xl font-playfair font-bold mb-12 text-primary">Find Our Location</h2>
             <p class="text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto mb-8">
                 Visit us at our office in Nairobi. We look forward to welcoming you!
@@ -413,6 +413,7 @@
                     <li><a href="about.html" class="hover:text-accent transition duration-300">About Us</a></li>
                     <li><a href="services.html" class="hover:text-accent transition duration-300">Services</a></li>
                     <li><a href="products.html" class="hover:text-accent transition duration-300">Products</a></li>
+                    <li><a href="contact.html" class="hover:text-accent transition duration-300">Contact Us</a></li>
                 </ul>
             </div>
 

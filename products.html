@@ -42,7 +42,7 @@
             /* Removed background-image from body to use only hero image for sections */
             background-repeat: repeat; /* Kept for consistency if a pattern is desired elsewhere */
             background-attachment: fixed; /* Creates a subtle parallax effect for the pattern */
-              background-image: url('IMAGES/Kenya.jfif'); /* Consistent hero image */
+            background-image: url('IMAGES/Kenya.jfif'); /* Consistent hero image */
         }
         body.loaded {
             opacity: 1; /* Final state after page content is loaded */
@@ -106,7 +106,7 @@
         .price-list-hero-section {
             min-height: 50vh; /* Shorter hero for sub-pages */
             padding-top: 80px; /* Accounts for fixed header height */
-            background-image: url('https://placehold.co/1920x1080/0F2C59/FFFFFF?text=Charlesabi+Enterprises'); /* Consistent hero image placeholder */
+            background-image: url('IMAGES/Kenya.jfif'); /* Consistent hero image */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -294,9 +294,9 @@
             <h1 class="text-2xl md:text-3xl font-bold font-playfair">Charlesabi Enterprises</h1>
            <nav class="hidden md:flex space-x-8 text-base font-medium">
                 <a href="index.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Home</a>
-                <a href="about.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">About Us</a>
                 <a href="services.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Services</a>
                 <a href="products.html" class="block px-4 py-2 bg-accent text-primary rounded-md">Price List</a> <!-- Active link for this page -->
+                <a href="about.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">About Us</a>
                 <a href="contact.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Contact Us</a>
            </nav>
             <!-- Mobile Menu Button - Hamburger icon for small screens -->
@@ -307,9 +307,9 @@
         <!-- Mobile Menu - Hidden by default, toggles on click -->
         <div id="mobile-menu" class="hidden md:hidden bg-primary text-white py-2">
                 <a href="index.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Home</a>
-                <a href="about.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">About Us</a>
                 <a href="services.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Services</a>
                 <a href="products.html" class="block px-4 py-2 bg-accent text-primary rounded-md">Price List</a> <!-- Active link for this page -->
+                <a href="about.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">About Us</a>
                 <a href="contact.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Contact Us</a>
         </div>
     </header>
@@ -326,7 +326,7 @@
         </div>
     </section>
 
-    <!-- Product List Section -->
+    <!-- Product List Section - Printing & Stationery -->
     <section class="py-16 md:py-24 text-textDark bg-section-parallax-1">
         <div class="container mx-auto px-4 md:px-8 lg:px-16 py-8 bg-cardBg rounded-xl shadow-lg fade-in-on-scroll">
             <h3 class="text-3xl md:text-4xl font-playfair font-bold text-primary text-center mb-10">Printing & Stationery Products</h3>
@@ -423,6 +423,125 @@
 
             <div class="text-center mt-12 text-lg fade-in-on-scroll">
                 <p class="text-gray-700">Note: Prices are estimates and may vary based on quantity, customization, and current market rates. For large orders or specific requirements, please <a href="contact.html" class="text-primary font-semibold hover:text-accent transition duration-300">get in touch with us</a> for a precise quote.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cyber Products Section -->
+    <section class="py-16 md:py-24 text-textDark bg-backgroundLight">
+        <div class="container mx-auto px-4 md:px-8 lg:px-16 py-8 bg-cardBg rounded-xl shadow-lg fade-in-on-scroll">
+            <h3 class="text-3xl md:text-4xl font-playfair font-bold text-primary text-center mb-10">Cyber Products & Solutions</h3>
+            <p class="text-center text-lg text-gray-700 mb-10 max-w-3xl mx-auto">
+                Explore our range of cybersecurity products designed to protect your digital assets and ensure peace of mind.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 fade-in-on-scroll">
+                <!-- Product Card 1: Antivirus Software -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover border border-subtleBorder">
+                    <img src="https://placehold.co/300x200/0F2C59/FFFFFF?text=Antivirus" alt="Antivirus Software" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-playfair font-bold text-xl text-primary mb-2">Antivirus Software (Annual)</h4>
+                        <p class="text-sm text-gray-600 mb-4">Comprehensive protection against viruses, malware, and ransomware.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-accent">KES 2,500</span>
+                            <a href="contact.html" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition duration-300">Inquire</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 2: VPN Service -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover border border-subtleBorder">
+                    <img src="https://placehold.co/300x200/FF8C42/FFFFFF?text=VPN" alt="VPN Service" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-playfair font-bold text-xl text-primary mb-2">VPN Service (Monthly)</h4>
+                        <p class="text-sm text-gray-600 mb-4">Secure your internet connection and protect your online privacy.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-accent">KES 800</span>
+                            <a href="contact.html" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition duration-300">Inquire</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 3: Password Manager -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover border border-subtleBorder">
+                    <img src="https://placehold.co/300x200/0F2C59/FFFFFF?text=Password" alt="Password Manager" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-playfair font-bold text-xl text-primary mb-2">Password Manager (Lifetime)</h4>
+                        <p class="text-sm text-gray-600 mb-4">Securely store and manage all your passwords with ease.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-accent">KES 3,000</span>
+                            <a href="contact.html" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition duration-300">Inquire</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 4: Data Backup Solution -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover border border-subtleBorder">
+                    <img src="https://placehold.co/300x200/FF8C42/FFFFFF?text=Backup" alt="Data Backup Solution" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-playfair font-bold text-xl text-primary mb-2">Cloud Data Backup (Annual)</h4>
+                        <p class="text-sm text-gray-600 mb-4">Automated cloud backup to protect your important files.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-accent">KES 4,000</span>
+                            <a href="contact.html" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition duration-300">Inquire</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 5: Network Firewall -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover border border-subtleBorder">
+                    <img src="https://placehold.co/300x200/0F2C59/FFFFFF?text=Firewall" alt="Network Firewall" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-playfair font-bold text-xl text-primary mb-2">Network Firewall (Hardware)</h4>
+                        <p class="text-sm text-gray-600 mb-4">Hardware firewall for robust network security.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-accent">KES 15,000+</span>
+                            <a href="contact.html" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition duration-300">Inquire</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 6: Endpoint Detection & Response (EDR) -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover border border-subtleBorder">
+                    <img src="https://placehold.co/300x200/FF8C42/FFFFFF?text=EDR" alt="Endpoint Detection & Response" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-playfair font-bold text-xl text-primary mb-2">Endpoint Security (Per Device/Annual)</h4>
+                        <p class="text-sm text-gray-600 mb-4">Advanced protection for individual devices against sophisticated threats.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-accent">KES 5,000</span>
+                            <a href="contact.html" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition duration-300">Inquire</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 7: Security Awareness Training -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover border border-subtleBorder">
+                    <img src="https://placehold.co/300x200/0F2C59/FFFFFF?text=Training" alt="Security Awareness Training" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-playfair font-bold text-xl text-primary mb-2">Security Awareness Training (Per Session)</h4>
+                        <p class="text-sm text-gray-600 mb-4">Educate your team on cybersecurity best practices and threat identification.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-accent">KES 7,500+</span>
+                            <a href="contact.html" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition duration-300">Inquire</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 8: Dark Web Monitoring -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover border border-subtleBorder">
+                    <img src="https://placehold.co/300x200/FF8C42/FFFFFF?text=Dark+Web" alt="Dark Web Monitoring" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-playfair font-bold text-xl text-primary mb-2">Dark Web Monitoring (Annual)</h4>
+                        <p class="text-sm text-gray-600 mb-4">Monitor the dark web for your compromised credentials and data.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-accent">KES 3,500</span>
+                            <a href="contact.html" class="bg-primary text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-accent transition duration-300">Inquire</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12 text-lg fade-in-on-scroll">
+                <p class="text-gray-700">For custom cybersecurity solutions, consultations, or enterprise-level pricing, please <a href="contact.html" class="text-primary font-semibold hover:text-accent transition duration-300">contact our cyber security experts</a>.</p>
             </div>
         </div>
     </section>

@@ -105,7 +105,7 @@
         .price-list-hero-section {
             min-height: 50vh; /* Shorter hero for sub-pages */
             padding-top: 80px; /* Accounts for fixed header height */
-            background-image: url('IMAGES/Kenya.jfif'); /* Consistent hero image */
+            background-image: url('https://placehold.co/1920x1080/0F2C59/FFFFFF?text=Charlesabi+Enterprises'); /* Consistent hero image placeholder */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -136,7 +136,7 @@
 
         /* Section Backgrounds with Parallax and Overlays for visual depth - Now all use Kenya.jfif */
         .bg-section-parallax-1 {
-            background-image: url('IMAGES/Kenya.jfif'); /* All parallax sections now use the hero image */
+            background-image: url('https://placehold.co/1920x1080/E8EBF2/333333?text=Background+Image'); /* All parallax sections now use a consistent placeholder */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -155,7 +155,7 @@
         }
 
         .bg-call-to-action {
-            background-image: url('IMAGES/CALL.png'); /* Consistent image */
+            background-image: url('https://placehold.co/1920x1080/0F2C59/FFFFFF?text=Call+to+Action+Background'); /* Consistent image placeholder */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -192,6 +192,15 @@
             background-color: rgba(var(--tw-colors-accent-rgb), 0.1); /* Subtle hover effect using accent color */
             transition: background-color 0.2s ease-in-out;
         }
+        /* Image styling within the table */
+        .product-table img {
+            width: 80px; /* Fixed width for product images */
+            height: 80px; /* Fixed height for product images */
+            object-fit: cover; /* Ensures images cover the area without distortion */
+            border-radius: 8px; /* Slightly rounded corners for images */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for images */
+        }
+
 
         /* Mobile Menu Specific Styles */
         #mobile-menu {
@@ -283,13 +292,12 @@
         <div class="container mx-auto flex justify-between items-center p-4 md:p-6">
             <h1 class="text-2xl md:text-3xl font-bold font-playfair">Charlesabi Enterprises</h1>
            <nav class="hidden md:flex space-x-8 text-base font-medium">
-                <a href="index.html" class="block px-4 py-2 bg-accent text-primary rounded-md">Home</a> <!-- Active link for this page -->
+                <a href="index.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Home</a>
                 <a href="about.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">About Us</a>
                 <a href="services.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Services</a>
-               
-                <a href="contact.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">ContactUs</a>
-        
-            </nav>
+                <a href="products.html" class="block px-4 py-2 bg-accent text-primary rounded-md">Price List</a> <!-- Active link for this page -->
+                <a href="contact.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Contact Us</a>
+           </nav>
             <!-- Mobile Menu Button - Hamburger icon for small screens -->
             <button id="mobile-menu-button" class="md:hidden text-white text-3xl focus:outline-none">
                 &#9776; <!-- Hamburger icon -->
@@ -297,11 +305,11 @@
         </div>
         <!-- Mobile Menu - Hidden by default, toggles on click -->
         <div id="mobile-menu" class="hidden md:hidden bg-primary text-white py-2">
-
-                <a href="index.html" class="block px-4 py-2 bg-accent text-primary rounded-md">Home</a> <!-- Active link for this page -->
+                <a href="index.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Home</a>
                 <a href="about.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">About Us</a>
                 <a href="services.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Services</a>
-            <a href="contact.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Contact Us</a>
+                <a href="products.html" class="block px-4 py-2 bg-accent text-primary rounded-md">Price List</a> <!-- Active link for this page -->
+                <a href="contact.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Contact Us</a>
         </div>
     </header>
 
@@ -319,7 +327,7 @@
 
     <!-- Product List Section -->
     <section class="py-16 md:py-24 text-textDark bg-section-parallax-1">
-        <div class="w-full px-4 md:px-8 lg:px-16 py-8 bg-cardBg rounded-xl shadow-lg fade-in-on-scroll">
+        <div class="container mx-auto px-4 md:px-8 lg:px-16 py-8 bg-cardBg rounded-xl shadow-lg fade-in-on-scroll">
             <h3 class="text-3xl md:text-4xl font-playfair font-bold text-primary text-center mb-10">Printing & Stationery Products</h3>
             <p class="text-center text-lg text-gray-700 mb-10 max-w-3xl mx-auto">
                 Below are some of our most popular items and their estimated prices (KES). For customized orders or bulk pricing, please contact us directly.
@@ -329,6 +337,7 @@
                 <table class="min-w-full text-base product-table">
                     <thead>
                         <tr>
+                            <th>Product Image</th> <!-- New column for images -->
                             <th>Product Name</th>
                             <th>Description</th>
                             <th>Price (KES)</th>
@@ -336,61 +345,73 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td><img src="https://placehold.co/80x80/FF8C42/FFFFFF?text=Receipt" alt="Receipt Book"></td>
                             <td>Receipt Book</td>
                             <td>Custom carbon copy receipt books (A5/A6)</td>
                             <td>150 – 500</td>
                         </tr>
                         <tr>
+                            <td><img src="https://placehold.co/80x80/0F2C59/FFFFFF?text=Copy" alt="Photocopying"></td>
                             <td>Photocopying (Per Page)</td>
                             <td>Black and white laser copy</td>
                             <td>5</td>
                         </tr>
                         <tr>
+                            <td><img src="https://placehold.co/80x80/FF8C42/FFFFFF?text=Binding" alt="Binding"></td>
                             <td>Binding</td>
                             <td>Thermal or spiral binding for documents</td>
                             <td>50 – 150</td>
                         </tr>
                         <tr>
+                            <td><img src="https://placehold.co/80x80/0F2C59/FFFFFF?text=Laminate" alt="Lamination"></td>
                             <td>Lamination</td>
                             <td>A4 & A3 document lamination for durability</td>
                             <td>30 – 100</td>
                         </tr>
                         <tr>
+                            <td><img src="https://placehold.co/80x80/FF8C42/FFFFFF?text=Stamp" alt="Custom Stamps"></td>
                             <td>Custom Stamps</td>
                             <td>Personalized rubber & self-inking stamps</td>
                             <td>500 – 1,500</td>
                         </tr>
                         <tr>
+                            <td><img src="https://placehold.co/80x80/0F2C59/FFFFFF?text=Marker" alt="Permanent Markers"></td>
                             <td>Permanent Markers</td>
                             <td>High-quality black or colored ink options</td>
                             <td>80 – 120</td>
                         </tr>
                         <tr>
+                            <td><img src="https://placehold.co/80x80/FF8C42/FFFFFF?text=Binder" alt="File Binders"></td>
                             <td>File Binders</td>
                             <td>Durable lever arch or ring binders</td>
                             <td>150 – 300</td>
                         </tr>
                         <tr>
+                            <td><img src="https://placehold.co/80x80/0F2C59/FFFFFF?text=Sticky" alt="Sticky Notes"></td>
                             <td>Sticky Notes</td>
                             <td>Convenient pack of assorted sizes/colors</td>
                             <td>50 – 100</td>
                         </tr>
                         <tr>
+                            <td><img src="https://placehold.co/80x80/FF8C42/FFFFFF?text=Calc" alt="Calculators"></td>
                             <td>Calculators</td>
                             <td>Reliable scientific or office calculators</td>
                             <td>300 – 1,200</td>
                         </tr>
                         <tr>
+                            <td><img src="https://placehold.co/80x80/0F2C59/FFFFFF?text=Pens" alt="Office Pens"></td>
                             <td>Office Pens (Box)</td>
                             <td>Box of 50 blue/black ballpoint pens</td>
                             <td>300 – 500</td>
                         </tr>
                         <tr>
+                            <td><img src="https://placehold.co/80x80/FF8C42/FFFFFF?text=Whiteboard" alt="Whiteboard"></td>
                             <td>Whiteboard (Small)</td>
                             <td>Magnetic whiteboard (60x90 cm)</td>
                             <td>1,500 – 2,500</td>
                         </tr>
                         <tr>
+                            <td><img src="https://placehold.co/80x80/0F2C59/FFFFFF?text=Paper" alt="Paper Ream"></td>
                             <td>Paper Ream (A4)</td>
                             <td>500 sheets of A4 multi-purpose paper</td>
                             <td>450 – 600</td>
@@ -400,7 +421,7 @@
             </div>
 
             <div class="text-center mt-12 text-lg fade-in-on-scroll">
-                <p class="text-gray-700">Note: Prices are estimates and may vary based on quantity, customization, and current market rates. For large orders or specific requirements, please <a href="contact.php" class="text-primary font-semibold hover:text-accent transition duration-300">get in touch with us</a> for a precise quote.</p>
+                <p class="text-gray-700">Note: Prices are estimates and may vary based on quantity, customization, and current market rates. For large orders or specific requirements, please <a href="contact.html" class="text-primary font-semibold hover:text-accent transition duration-300">get in touch with us</a> for a precise quote.</p>
             </div>
         </div>
     </section>
@@ -412,7 +433,7 @@
             <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
                 Our team is ready to assist you with personalized solutions and competitive pricing.
             </p>
-            <a href="contact.php" class="inline-block bg-accent text-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-accent transition duration-300 shadow-lg btn-primary-hover">
+            <a href="contact.html" class="inline-block bg-accent text-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-accent transition duration-300 shadow-lg btn-primary-hover">
                 Request a Custom Quote
             </a>
         </div>
@@ -433,11 +454,11 @@
             <div>
                 <h4 class="text-xl font-playfair font-bold mb-4">Quick Links</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="index.php" class="hover:text-accent transition duration-300">Home</a></li>
-                    <li><a href="about.php" class="hover:text-accent transition duration-300">About Us</a></li>
-                    <li><a href="services.php" class="hover:text-accent transition duration-300">Services</a></li>
-                    <li><a href="products.php" class="hover:text-accent transition duration-300">Price List</a></li>
-                    <li><a href="contact.php" class="hover:text-accent transition duration-300">Contact</a></li>
+                    <li><a href="index.html" class="hover:text-accent transition duration-300">Home</a></li>
+                    <li><a href="about.html" class="hover:text-accent transition duration-300">About Us</a></li>
+                    <li><a href="services.html" class="hover:text-accent transition duration-300">Services</a></li>
+                    <li><a href="products.html" class="hover:text-accent transition duration-300">Price List</a></li>
+                    <li><a href="contact.html" class="hover:text-accent transition duration-300">Contact</a></li>
                 </ul>
             </div>
 
@@ -458,11 +479,11 @@
                     </li>
                     <li class="flex items-center justify-center md:justify-start">
                         <i data-lucide="phone" class="w-5 h-5 mr-2 text-accent"></i>
-                        <a href="tel:+2547XXXXXXXX" class="hover:text-accent transition duration-300">+254 7XX XXX XXXX</a>
+                        <a href="tel:+254711408733" class="hover:text-accent transition duration-300">+254711408733</a>
                     </li>
                     <li class="flex items-center justify-center md:justify-start">
                         <i data-lucide="mail" class="w-5 h-5 mr-2 text-accent"></i>
-                        <a href="mailto:info@charlesabienterprises.com" class="hover:text-accent transition duration-300">info@charlesabienterprises.com</a>
+                        <a href="mailto:charlessaabi@gmail.com" class="hover:text-accent transition duration-300">charlessaabi@gmail.com</a>
                     </li>
                 </ul>
             </div>

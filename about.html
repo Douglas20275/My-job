@@ -94,7 +94,7 @@
         .about-hero-section {
             min-height: 50vh; /* Shorter hero for sub-pages */
             padding-top: 80px; /* Accounts for fixed header height */
-            background-image: url('IMAGES/Two.jfif'); /* Specific image for About page */
+            background-image: url('https://placehold.co/1920x1080/0F2C59/FFFFFF?text=About+Us+Hero'); /* Placeholder for Two.jfif */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -125,7 +125,7 @@
 
         /* Section Backgrounds with Parallax and Overlays for visual depth */
         .bg-section-parallax-1 {
-            background-image: url('IMAGES/Four.jfif'); /* Local image for Teamwork Collaboration */
+            background-image: url('https://placehold.co/1920x1080/E8EBF2/333333?text=Teamwork+Collaboration'); /* Placeholder for Four.jfif */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -144,7 +144,7 @@
         }
 
         .bg-section-parallax-2 {
-            background-image: url('IMAGES/Charles.jfif'); /* Local image for Creative Printing Process */
+            background-image: url('https://placehold.co/1920x1080/0F2C59/FFFFFF?text=Creative+Process'); /* Placeholder for Charles.jfif */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -163,7 +163,7 @@
         }
 
         .bg-call-to-action {
-            background-image: url('IMAGES/CALL.png'); /* Local image for Call to Action Background */
+            background-image: url('https://placehold.co/1920x1080/FF8C42/FFFFFF?text=Call+to+Action'); /* Placeholder for CALL.png */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -187,10 +187,13 @@
             max-height: 0;
             overflow: hidden;
             opacity: 0;
+            /* Ensure it's hidden by default on small screens */
+            display: none;
         }
         #mobile-menu.open {
             max-height: 300px; /* Adjust based on content height */
             opacity: 1;
+            display: block; /* Make it visible when open */
         }
         #mobile-menu a {
             padding: 0.75rem 1rem; /* More generous padding for touch targets */
@@ -213,6 +216,24 @@
         #mobile-menu .get-quote-mobile:hover {
             background-color: var(--tw-colors-accent);
             color: var(--tw-colors-white);
+        }
+
+        /* Ensure desktop nav is hidden when mobile menu is open */
+        @media (max-width: 767px) {
+            .header-nav-desktop {
+                display: none;
+            }
+            #mobile-menu.open + .header-nav-desktop {
+                display: none; /* Keep desktop nav hidden when mobile is open */
+            }
+        }
+        @media (min-width: 768px) {
+            #mobile-menu {
+                display: none !important; /* Force hide mobile menu on desktop */
+            }
+            .header-nav-desktop {
+                display: flex !important; /* Force show desktop nav on desktop */
+            }
         }
     </style>
     <script>
@@ -248,8 +269,7 @@
             const mobileMenu = document.getElementById("mobile-menu");
 
             mobileMenuButton.addEventListener("click", () => {
-                mobileMenu.classList.toggle("hidden");
-                mobileMenu.classList.toggle("open"); // Toggle 'open' class for animation
+                mobileMenu.classList.toggle("open");
             });
         });
     </script>
@@ -259,146 +279,155 @@
     <header class="header-gradient shadow-lg fixed w-full z-50 text-white">
         <div class="container mx-auto flex justify-between items-center p-4 md:p-6">
             <h1 class="text-2xl md:text-3xl font-bold font-playfair">Charlesabi Enterprises</h1>
-            <nav class="hidden md:flex space-x-8 text-base font-medium">
-           
-                <a href="index.html" class="block px-4 py-2 bg-accent text-primary rounded-md">Home</a> <!-- Active link for this page -->
-   
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8 text-base font-medium header-nav-desktop">
+                <a href="index.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Home</a>
+                <a href="about.html" class="block px-4 py-2 bg-accent text-primary rounded-md">About Us</a> <!-- Active link for this page -->
                 <a href="services.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Services</a>
                 <a href="products.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Price List</a>
                 <a href="contact.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Contact</a>
                 <a href="contact.html" class="block px-4 py-2 hover:bg-white hover:text-accent transition duration-300 rounded-full border border-white">Get Quote</a>
             </nav>
+
+            <!-- Mobile Menu Button -->
             <button id="mobile-menu-button" class="md:hidden text-white text-3xl focus:outline-none">
-                &#9776; </button>
+                &#9776; <!-- Hamburger icon -->
+            </button>
         </div>
-         <nav class="hidden md:flex space-x-8 text-base font-medium">
-                <a href="index.html" class="block px-4 py-2 bg-accent text-primary rounded-md">Home</a> <!-- Active link for this page -->
-       
-                <a href="services.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Services</a>
-                <a href="products.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Price List</a>
-                <a href="contact.html" class="block px-4 py-2 hover:bg-accent hover:text-primary transition duration-300 rounded-md">Contact</a>
-                <a href="contact.html" class="block px-4 py-2 hover:bg-white hover:text-accent transition duration-300 rounded-full border border-white">Get Quote</a>
-            </nav>
+
+        <!-- Mobile Navigation (hidden by default, toggled by JS) -->
+        <nav id="mobile-menu" class="md:hidden bg-primary pb-4">
+            <a href="index.html" class="text-white hover:bg-accent hover:text-primary transition duration-300">Home</a>
+            <a href="about.html" class="active-link">About Us</a>
+            <a href="services.html" class="text-white hover:bg-accent hover:text-primary transition duration-300">Services</a>
+            <a href="products.html" class="text-white hover:bg-accent hover:text-primary transition duration-300">Price List</a>
+            <a href="contact.html" class="text-white hover:bg-accent hover:text-primary transition duration-300">Contact</a>
+            <a href="contact.html" class="get-quote-mobile">Get Quote</a>
+        </nav>
     </header>
 
-    <section id="top" class="about-hero-section">
-        <div class="about-hero-content animate-fade-in">
-            <h2 class="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold mb-6 leading-tight">
-                Our Story: Innovation, Integrity, Impact.
-            </h2>
-            <p class="text-lg md:text-xl opacity-90">
-                Discover the journey of Charlesabi Enterprises, from a visionary idea to a trusted partner empowering businesses and individuals across Kenya.
-            </p>
-        </div>
-    </section>
-
-    <section id="our-story" class="py-16 md:py-24 bg-backgroundLight text-textDark">
-        <div class="container mx-auto px-4 bg-cardBg p-8 rounded-xl shadow-lg fade-in-on-scroll">
-            <h2 class="text-4xl md:text-5xl font-playfair font-bold mb-12 text-center text-primary">Our Journey of Growth and Dedication</h2>
-            <div class="max-w-4xl mx-auto text-lg text-gray-700 leading-relaxed space-y-6">
-                <p>
-                    Charlesabi Enterprises began with a simple yet powerful vision: to bridge the digital divide and make essential business and digital services accessible to every individual and business in Kenya. What started as a humble cyber café, providing internet access and basic printing, quickly evolved in response to the growing needs of our community.
-                </p>
-                <p>
-                    Over the years, we've expanded our offerings to become a comprehensive hub for innovative digital solutions, high-quality printing, and expert business and tax advisory services. Our journey has been one of continuous learning and adaptation, always driven by the desire to empower our clients and contribute to their success.
-                </p>
-                <p>
-                    Today, Charlesabi Enterprises stands as a testament to dedication and growth. We are proud to be a trusted partner, offering reliable, affordable, and professional services that simplify complex processes and help our clients thrive in an ever-evolving landscape. We believe in building lasting relationships based on trust, transparency, and a shared commitment to excellence.
+    <main>
+        <section id="top" class="about-hero-section">
+            <div class="about-hero-content animate-fade-in">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold mb-6 leading-tight">
+                    Our Story: Innovation, Integrity, Impact.
+                </h2>
+                <p class="text-lg md:text-xl opacity-90">
+                    Discover the journey of Charlesabi Enterprises, from a visionary idea to a trusted partner empowering businesses and individuals across Kenya.
                 </p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="meet-our-founder" class="py-16 md:py-24 bg-sectionAlt text-textDark bg-section-parallax-1">
-        <div class="container mx-auto px-4 bg-cardBg p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center justify-center gap-12 fade-in-on-scroll">
-            <div class="md:w-1/3 flex justify-center">
-                <img src="IMAGES/Charles.jfif"
-                    alt="Founder's Photo - Charles Ochieng"
-                    class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover shadow-xl border-4 border-accent transition-all duration-500 hover:scale-105 hover:border-primary"
-                    onerror="this.onerror=null;this.src='https://placehold.co/320x320/FF8C42/FFFFFF?text=Charles+Ochieng';">
-            </div>
-            <div class="md:w-2/3 text-center md:text-left">
-                <h2 class="text-4xl md:text-5xl font-playfair font-bold mb-6 text-primary">Meet Our Visionary Founder, Charles Ochieng</h2>
-                <p class="text-lg text-gray-700 leading-relaxed mb-8">
-                    Charles Ochieng founded Charlesabi Enterprises with a profound vision: to make essential business and digital services truly accessible and impactful for everyone in Kenya. What began as a humble cyber café has blossomed into a comprehensive hub, meticulously built on a passion for empowering individuals and businesses through reliable, affordable, and professional solutions. His unwavering commitment to integrity, excellence, and a deep customer focus remains the guiding force behind every aspect of our operations.
-                </p>
-                <p class="text-md text-gray-600 italic">
-                    "Our goal has always been to be more than just a service provider; we aim to be a true partner in your success, fostering growth and simplifying complexities."
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="vision-mission" class="py-16 md:py-24 bg-backgroundLight text-textDark">
-        <div class="container mx-auto px-4 bg-cardBg p-8 rounded-xl shadow-lg fade-in-on-scroll">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="fade-in-on-scroll">
-                    <h3 class="text-3xl md:text-4xl font-playfair font-bold mb-6 text-primary text-center md:text-left">Our Vision</h3>
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        To be the leading and most trusted provider of integrated digital, printing, and business advisory services in Kenya, empowering individuals and enterprises to achieve their full potential through innovation and unwavering support. We envision a future where every client can navigate the digital and business landscape with confidence and ease.
+        <section id="our-story" class="py-16 md:py-24 bg-backgroundLight text-textDark">
+            <div class="container mx-auto px-4 bg-cardBg p-8 rounded-xl shadow-lg fade-in-on-scroll">
+                <h2 class="text-4xl md:text-5xl font-playfair font-bold mb-12 text-center text-primary">Our Journey of Growth and Dedication</h2>
+                <div class="max-w-4xl mx-auto text-lg text-gray-700 leading-relaxed space-y-6">
+                    <p>
+                        Charlesabi Enterprises began with a simple yet powerful vision: to bridge the digital divide and make essential business and digital services accessible to every individual and business in Kenya. What started as a humble cyber café, providing internet access and basic printing, quickly evolved in response to the growing needs of our community.
                     </p>
-                </div>
-                <div class="fade-in-on-scroll">
-                    <h3 class="text-3xl md:text-4xl font-playfair font-bold mb-6 text-primary text-center md:text-left">Our Mission</h3>
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        To provide accessible, high-quality, and efficient cyber cafe, printing, and professional business compliance solutions, fostering growth and simplifying operations for our diverse client base with integrity and excellence. We are committed to delivering tangible value and building lasting partnerships.
+                    <p>
+                        Over the years, we've expanded our offerings to become a comprehensive hub for innovative digital solutions, high-quality printing, and expert business and tax advisory services. Our journey has been one of continuous learning and adaptation, always driven by the desire to empower our clients and contribute to their success.
+                    </p>
+                    <p>
+                        Today, Charlesabi Enterprises stands as a testament to dedication and growth. We are proud to be a trusted partner, offering reliable, affordable, and professional services that simplify complex processes and help our clients thrive in an ever-evolving landscape. We believe in building lasting relationships based on trust, transparency, and a shared commitment to excellence.
                     </p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="our-values" class="py-16 md:py-24 bg-sectionAlt text-textDark bg-section-parallax-2">
-        <div class="container mx-auto px-4 bg-cardBg p-8 rounded-xl shadow-lg fade-in-on-scroll">
-            <h2 class="text-4xl md:text-5xl font-playfair font-bold mb-12 text-center text-primary">Our Core Values: Pillars of Our Promise</h2>
-            <p class="text-lg text-gray-700 leading-relaxed text-center max-w-4xl mx-auto mb-16">
-                These principles guide every interaction and decision we make, ensuring we deliver on our promises and exceed your expectations.
-            </p>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-                <div class="bg-cardBg p-6 rounded-lg shadow-md text-center card-hover border border-subtleBorder fade-in-on-scroll">
-                    <div class="w-20 h-20 mx-auto mb-4 flex items-center justify-center rounded-full bg-accent text-white shadow-inner">
-                        <i data-lucide="award" class="w-12 h-12"></i>
-                    </div>
-                    <h5 class="font-semibold text-xl text-primary mb-2">Integrity</h5>
-                    <p class="text-gray-600">Operating with unwavering honesty, transparency, and the highest moral principles in all our dealings.</p>
+        <section id="meet-our-founder" class="py-16 md:py-24 bg-sectionAlt text-textDark bg-section-parallax-1">
+            <div class="container mx-auto px-4 bg-cardBg p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center justify-center gap-12 fade-in-on-scroll">
+                <div class="md:w-1/3 flex justify-center">
+                    <!-- Placeholder image for Charles.jfif -->
+                    <img src="https://placehold.co/320x320/FF8C42/FFFFFF?text=Charles+Ochieng"
+                        alt="Founder's Photo - Charles Ochieng"
+                        class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover shadow-xl border-4 border-accent transition-all duration-500 hover:scale-105 hover:border-primary"
+                        onerror="this.onerror=null;this.src='https://placehold.co/320x320/FF8C42/FFFFFF?text=Charles+Ochieng';">
                 </div>
-                <div class="bg-cardBg p-6 rounded-lg shadow-md text-center card-hover border border-subtleBorder fade-in-on-scroll">
-                    <div class="w-20 h-20 mx-auto mb-4 flex items-center justify-center rounded-full bg-primary text-white shadow-inner">
-                        <i data-lucide="sparkles" class="w-12 h-12"></i>
-                    </div>
-                    <h5 class="font-semibold text-xl text-primary mb-2">Excellence</h5>
-                    <p class="text-gray-600">Consistently striving for superior quality in every service we provide, meticulously exceeding expectations.</p>
-                </div>
-                <div class="bg-cardBg p-6 rounded-lg shadow-md text-center card-hover border border-subtleBorder fade-in-on-scroll">
-                    <div class="w-20 h-20 mx-auto mb-4 flex items-center justify-center rounded-full bg-accent text-white shadow-inner">
-                        <i data-lucide="users" class="w-12 h-12"></i>
-                    </div>
-                    <h5 class="font-semibold text-xl text-primary mb-2">Customer Focus</h5>
-                    <p class="text-gray-600">Prioritizing our clients' unique needs, offering personalized solutions and unparalleled support at every step.</p>
-                </div>
-                <div class="bg-cardBg p-6 rounded-lg shadow-md text-center card-hover border border-subtleBorder fade-in-on-scroll">
-                    <div class="w-20 h-20 mx-auto mb-4 flex items-center justify-center rounded-full bg-primary text-white shadow-inner">
-                        <i data-lucide="handshake" class="w-12 h-12"></i>
-                    </div>
-                    <h5 class="font-semibold text-xl text-primary mb-2">Teamwork</h5>
-                    <p class="text-gray-600">Fostering a collaborative environment where collective effort and mutual support lead to superior outcomes for all.</p>
+                <div class="md:w-2/3 text-center md:text-left">
+                    <h2 class="text-4xl md:text-5xl font-playfair font-bold mb-6 text-primary">Meet Our Visionary Founder, Charles Ochieng</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-8">
+                        Charles Ochieng founded Charlesabi Enterprises with a profound vision: to make essential business and digital services truly accessible and impactful for everyone in Kenya. What began as a humble cyber café has blossomed into a comprehensive hub, meticulously built on a passion for empowering individuals and businesses through reliable, affordable, and professional solutions. His unwavering commitment to integrity, excellence, and a deep customer focus remains the guiding force behind every aspect of our operations.
+                    </p>
+                    <p class="text-md text-gray-600 italic">
+                        "Our goal has always been to be more than just a service provider; we aim to be a true partner in your success, fostering growth and simplifying complexities."
+                    </p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="bg-call-to-action text-white py-16 md:py-20 text-center">
-        <div class="container mx-auto px-4 relative z-10 fade-in-on-scroll">
-            <h3 class="text-3xl md:text-4xl font-playfair font-bold mb-6">Ready to Experience the Charlesabi Difference?</h3>
-            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
-                Partner with us for reliable digital solutions, expert business advisory, and quality printing services. Let's achieve your goals together.
-            </p>
-            <a href="contact.php" class="inline-block bg-accent text-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-accent transition duration-300 shadow-lg btn-primary-hover">
-                Contact Us Today
-            </a>
-        </div>
-    </section>
+        <section id="vision-mission" class="py-16 md:py-24 bg-backgroundLight text-textDark">
+            <div class="container mx-auto px-4 bg-cardBg p-8 rounded-xl shadow-lg fade-in-on-scroll">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="fade-in-on-scroll">
+                        <h3 class="text-3xl md:text-4xl font-playfair font-bold mb-6 text-primary text-center md:text-left">Our Vision</h3>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            To be the leading and most trusted provider of integrated digital, printing, and business advisory services in Kenya, empowering individuals and enterprises to achieve their full potential through innovation and unwavering support. We envision a future where every client can navigate the digital and business landscape with confidence and ease.
+                        </p>
+                    </div>
+                    <div class="fade-in-on-scroll">
+                        <h3 class="text-3xl md:text-4xl font-playfair font-bold mb-6 text-primary text-center md:text-left">Our Mission</h3>
+                        <p class="text-lg text-gray-700 leading-relaxed">
+                            To provide accessible, high-quality, and efficient cyber cafe, printing, and professional business compliance solutions, fostering growth and simplifying operations for our diverse client base with integrity and excellence. We are committed to delivering tangible value and building lasting partnerships.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="our-values" class="py-16 md:py-24 bg-sectionAlt text-textDark bg-section-parallax-2">
+            <div class="container mx-auto px-4 bg-cardBg p-8 rounded-xl shadow-lg fade-in-on-scroll">
+                <h2 class="text-4xl md:text-5xl font-playfair font-bold mb-12 text-center text-primary">Our Core Values: Pillars of Our Promise</h2>
+                <p class="text-lg text-gray-700 leading-relaxed text-center max-w-4xl mx-auto mb-16">
+                    These principles guide every interaction and decision we make, ensuring we deliver on our promises and exceed your expectations.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                    <div class="bg-cardBg p-6 rounded-lg shadow-md text-center card-hover border border-subtleBorder fade-in-on-scroll">
+                        <div class="w-20 h-20 mx-auto mb-4 flex items-center justify-center rounded-full bg-accent text-white shadow-inner">
+                            <i data-lucide="award" class="w-12 h-12"></i>
+                        </div>
+                        <h5 class="font-semibold text-xl text-primary mb-2">Integrity</h5>
+                        <p class="text-gray-600">Operating with unwavering honesty, transparency, and the highest moral principles in all our dealings.</p>
+                    </div>
+                    <div class="bg-cardBg p-6 rounded-lg shadow-md text-center card-hover border border-subtleBorder fade-in-on-scroll">
+                        <div class="w-20 h-20 mx-auto mb-4 flex items-center justify-center rounded-full bg-primary text-white shadow-inner">
+                            <i data-lucide="sparkles" class="w-12 h-12"></i>
+                        </div>
+                        <h5 class="font-semibold text-xl text-primary mb-2">Excellence</h5>
+                        <p class="text-gray-600">Consistently striving for superior quality in every service we provide, meticulously exceeding expectations.</p>
+                    </div>
+                    <div class="bg-cardBg p-6 rounded-lg shadow-md text-center card-hover border border-subtleBorder fade-in-on-scroll">
+                        <div class="w-20 h-20 mx-auto mb-4 flex items-center justify-center rounded-full bg-accent text-white shadow-inner">
+                            <i data-lucide="users" class="w-12 h-12"></i>
+                        </div>
+                        <h5 class="font-semibold text-xl text-primary mb-2">Customer Focus</h5>
+                        <p class="text-gray-600">Prioritizing our clients' unique needs, offering personalized solutions and unparalleled support at every step.</p>
+                    </div>
+                    <div class="bg-cardBg p-6 rounded-lg shadow-md text-center card-hover border border-subtleBorder fade-in-on-scroll">
+                        <div class="w-20 h-20 mx-auto mb-4 flex items-center justify-center rounded-full bg-primary text-white shadow-inner">
+                            <i data-lucide="handshake" class="w-12 h-12"></i>
+                        </div>
+                        <h5 class="font-semibold text-xl text-primary mb-2">Teamwork</h5>
+                        <p class="text-gray-600">Fostering a collaborative environment where collective effort and mutual support lead to superior outcomes for all.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-call-to-action text-white py-16 md:py-20 text-center">
+            <div class="container mx-auto px-4 relative z-10 fade-in-on-scroll">
+                <h3 class="text-3xl md:text-4xl font-playfair font-bold mb-6">Ready to Experience the Charlesabi Difference?</h3>
+                <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                    Partner with us for reliable digital solutions, expert business advisory, and quality printing services. Let's achieve your goals together.
+                </p>
+                <a href="contact.html" class="inline-block bg-accent text-primary px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-accent transition duration-300 shadow-lg btn-primary-hover">
+                    Contact Us Today
+                </a>
+            </div>
+        </section>
+    </main>
 
     <footer class="bg-primary text-white py-12">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
@@ -409,6 +438,16 @@
                 </p>
             </div>
 
+            <div>
+                <h4 class="text-xl font-playfair font-bold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="index.html" class="hover:text-accent transition duration-300">Home</a></li>
+                    <li><a href="about.html" class="hover:text-accent transition duration-300">About Us</a></li>
+                    <li><a href="services.html" class="hover:text-accent transition duration-300">Services</a></li>
+                    <li><a href="products.html" class="hover:text-accent transition duration-300">Price List</a></li>
+                    <li><a href="contact.html" class="hover:text-accent transition duration-300">Contact</a></li>
+                </ul>
+            </div>
         
             <div>
                 <h4 class="text-xl font-playfair font-bold mb-4">Visit Us</h4>
@@ -430,7 +469,7 @@
                     </li>
                     <li class="flex items-center justify-center md:justify-start">
                         <i data-lucide="mail" class="w-5 h-5 mr-2 text-accent"></i>
-                        <a href="charlessaabi@gmail.com" class="hover:text-accent transition duration-300">charlessaabi@gmail.com</a>
+                        <a href="mailto:charlessaabi@gmail.com" class="hover:text-accent transition duration-300">charlessaabi@gmail.com</a>
                     </li>
                 </ul>
             </div>
